@@ -10,7 +10,22 @@
 </head>
 <body>
 
-	<div id='app'></div>
+	<div id='app'>
+
+		{{ user }}
+
+
+	</div>
+
+	<script>
+		var app = new Vue({
+			el: "#app"
+			// Data c'est les données c'est ici aussi l'état
+			data : {
+				user:'Bertrand'
+			}
+		})
+	</script>
 
 </body>
 </html>
