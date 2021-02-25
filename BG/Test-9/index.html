@@ -14,8 +14,11 @@
 <body>
 
 	<div id='app'>
-		<h1>{{message}}</h1>
-		<p v-bind:title="message" v-for="todo in todos">
+		<h1>The Checklist</h1>
+		<input type="text" v-model="message">&nbsp;
+		<button @click=ajouterNote>Ajouter</button>
+		{{message}}
+		<p v-bind:title="message" v-for="todo in todos" @click="inverser">
 			{{ todo }}
 		</p>
 	</div>
@@ -33,6 +36,9 @@
 				inverser(){
 					// This fait référence à l'instance de vue.
 					this.todos.reverse();
+				},
+				ajouterNote(){
+					this.todos.push(this.message);
 				}
 			}
 		}).mount('#app')

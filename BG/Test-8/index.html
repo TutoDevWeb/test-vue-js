@@ -12,10 +12,12 @@
 </head>
 
 <body>
+	
 
 	<div id='app'>
 		<h1>{{message}}</h1>
-		<p v-bind:title="message" v-for="todo in todos">
+		<!-- Ici on a mis un gestionnaire d'événement -->
+		<p v-bind:title="message" v-for="todo in todos" @click="inverser">
 			{{ todo }}
 		</p>
 	</div>
