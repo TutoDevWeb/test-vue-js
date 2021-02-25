@@ -21,12 +21,6 @@
 		<p v-bind:title="message" v-for="todo in todos" @click="inverser">
 			{{ todo }}
 		</p>
-
-		<!-- ++++++++++++++++++++++++++++++++++++++++++ -->
-		<!-- Ici on implante notre petit composant note -->
-		<note content="Mon nouveau contenu"></note>
-
-
 	</div>
 
 	<script>
@@ -48,17 +42,8 @@
 					this.message = '';
 				}
 			}
-		});
-
-		// ----------------------------------------
-		// Ici on se créer un petit composant note
-		vm.component('note', {
-			props : ['content'],
-			template : `<p> {{ content }} </p>`
-		});
-		// ----------------------------------------
-
-		vm.mount('#app');
+		}).mount('#app');
+		
 	</script>
 
 </body>
