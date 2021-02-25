@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ma Checklist v-bind</title>
+	<script src="https://unpkg.com/vue@next"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div id='app'>
+		<p v-bind:title="message" v-for="todo in todos" :key="todo.id">
+			{{ todo.content }}
+		</p>
+	</div>
+
+	<script>
+		const vm = Vue.createApp({
+			// Data c'est les données c'est ici aussi l'état
+			data() {
+				return {
+					message: 'Bonjour à tous !',
+					todos: [
+						{id : 0 , content : 'Tache #1'},
+						{id : 1 , content : 'Tache #2'}
+					]
+				}
+			}
+		}).mount('#app')
+	</script>
+
+</body>
+
+</html>
