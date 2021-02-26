@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ma Checklist v-bind</title>
+	<script src="https://unpkg.com/vue@next"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+		integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div id='app'>
+		<h1>The Checklist</h1>
+
+		<ajout @nouvellenote="ajouterNote"></ajout>
+		<note v-for="todo in todos" v-bind:content="todo"></note>
+
+
+	</div>
+
+	<script>
+		const vm = Vue.createApp({
+			// Data c'est les données c'est ici aussi l'état
+			data() {
+				return {
+					todos: ["Sauver le monde","Apprendre Vue JS","Boire un café"]
+				}
+			},
+			methods: {
+				inverser(){
+					// This fait référence à l'instance de vue.
+					this.todos.reverse();
+				},
+				ajouterNote(message){
+					this.todos.push(message);
+				}
+			}
+		});
+
+		// ----------------------------------------
+		// Ici on se créer un petit composant note
+		vm.component('note', {
+			props : ['content'],
+			template : `<p> {{ content }} </p>`
+		});
+		// ----------------------------------------
+
+		vm.component('ajout',{
+			props : [],
+			data(){
+				return {
+					interne : 'Nouveau message'
+				}
+			},
+			// Méthode interne au composant
+			methods: {
+				enregistrementNote(){
+					// Envoie d'un événement perso que l'on appelle nouvellenote
+					this.$emit('nouvellenote',this.interne)
+				}
+
+			},
+			template : `<input type="text" v-model="interne">&nbsp;
+			<button @click="enregistrementNote" v-if=" interne != '' ">Ajouter</button>
+			{{interne}}`
+		})
+
+
+		vm.mount('#app');
+	</script>
+
+</body>
+
+</html>

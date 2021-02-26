@@ -11,8 +11,10 @@
 <body>
 
 	<div id='app'>
-		<p v-bind:title="message">
+		<p v-bind:title="message" v-bind:close="mess_fin">
 			{{ message }}
+			{{ mess_fin }}
+
 		</p>
 	</div>
 
@@ -20,7 +22,9 @@
 		const vm = Vue.createApp({
 			// Data c'est les données c'est ici aussi l'état
 			data(){
-				return { message : 'Bonjour à tous !'}
+				return { message : 'Bonjour à tous !',
+							mess_fin : 'Au revoir !'
+			}
 			}
 		}).mount('#app')
 	</script>
